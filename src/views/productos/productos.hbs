@@ -1,0 +1,123 @@
+ <div class="container">
+     <div class="row">
+         <div class="col-6 col-md-6">
+     <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th scope="col">id_producto</th>
+                <th scope="col">nombre</th>
+                <th scope="col">descripcion</th>
+                <th scope="col">categoria </th>
+                <th scope="col">imagen </th>
+                <th scope="col">eliminar & modificar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each todoProducto}}
+                <tr>
+                <th scope="row">{{id_producto}}</th>
+                    <td>{{nombre}}</td>
+                    <td>{{descripcion}}</td>
+                    <td>{{categoria}}</td>
+                    
+                    <td><div class="pic"><img src="{{url_img}}" width="100px" height="50px" alt=""></div></td>
+                          <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{id_producto}}">
+                        eliminar
+                        </button>
+                          <div class="modal fade" id="exampleModal{{id_producto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="color:red" class="modal-title" id="exampleModalLabel">eliminar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div style="color:blue;" class="modal-body">
+                                    desea eliminar usuario {{nombre}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                    <a href="/producto/eliminar/{{id_producto}}" class="btn btn-danger">eliminar</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarproducto{{id_producto}}">
+                        modificar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modificarproducto{{id_producto}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="/producto/modificar/{{id_producto}}">
+                                        <div class="modal-header">
+                                            <h5 style="color:red" class="modal-title" id="exampleModalLabel">modificar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div style="color:blue;" class="modal-body">
+                                        
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">nombre</label>
+                                                    <input type="text" value="{{nombre}}" class="form-control" name="nombre" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nombre">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">descripcion</label>
+                                                    <input type="text" value="{{descripcion}}" class="form-control" name="descripcion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="descripcion">
+                                                </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                            <button type="submit" class="btn btn-primary">modificar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    
+
+
+        <div class="col-12 col-md-4">
+            <di class="row-4">
+                <form method="POST" action="/producto/agregar">
+                    <h1>producto</h1>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nombre">
+                    </div>
+
+                    <input type="hidden" class="form-control" name="id_producto" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">descripcion</label>
+                        <input type="text" class="form-control" name="descripcion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="descripcion">
+                    </div>
+
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">url_img</label>
+                        <input type="text" class="form-control" name="url_img" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="url_img">
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+         </di>
+    </div>
+    
+    
+        
+</div>

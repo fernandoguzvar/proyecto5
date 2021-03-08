@@ -1,0 +1,176 @@
+ <div class="container">
+     <div class="row">
+         <div class="col-6 col-md-6">
+     <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th scope="col">id_usuario</th>
+                <th scope="col">nombre</th>
+                <th scope="col">email</th>
+                <th scope="col">apellido</th>
+                <th scope="col">numero_cedula</th>
+                <th scope="col">direccion</th>
+                <th scope="col">whatsapp</th>
+                <th scope="col">rol</th>
+                <th scope="col">eliminar & modificar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each todoUsuario}}
+                <tr>
+                <th scope="row">{{id_usuario}}</th>
+                    <td>{{nombre}}</td>
+                    <td>{{email}}</td>
+                    <td>{{apellido}}</td>
+                    <td>{{numero_cedula}}</td>
+                    <td>{{direccion}}</td>
+                    <td>{{whatsapp}}</td>
+                    <td>{{nombre1}}</td>
+
+                    {{!-- <td><div class="pic"><img src="{{comentario}}" width="100px" height="50px" alt=""></div></td> --}}
+                          <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{id_usuario}}">
+                        eliminar
+                        </button>
+                          <div class="modal fade" id="exampleModal{{id_usuario}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="color:red" class="modal-title" id="exampleModalLabel">eliminar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div style="color:blue;" class="modal-body">
+                                    desea eliminar usuario {{nombre}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                    <a href="/usuario/eliminar/{{id_usuario}}" class="btn btn-danger">eliminar</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarusuario{{id_usuario}}">
+                        modificar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modificarusuario{{id_usuario}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="/usuario/modificar/{{id_usuario}}">
+                                        <div class="modal-header">
+                                            <h5 style="color:red" class="modal-title" id="exampleModalLabel">modificar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div style="color:blue;" class="modal-body">
+                                        
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">nombre</label>
+                                                    <input type="text" value="{{nombre}}" class="form-control" name="nombre" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nombre">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">email</label>
+                                                    <input type="text" value="{{email}}" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">apellido</label>
+                                                    <input type="text" value="{{apellido}}" class="form-control" name="apellido" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="apellido">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">numero cedula</label>
+                                                    <input type="text" value="{{numero_cedula}}" class="form-control" name="numero_cedula" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="numero_cedula">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">direccion</label>
+                                                    <input type="text" value="{{direccion}}" class="form-control" name="direccion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="direccion">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">whatsapp</label>
+                                                    <input type="text" value="{{whatsapp}}" class="form-control" name="whatsapp" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="whatsapp">
+                                                </div>
+
+
+                                                {{!--  <div class="form-group">
+                                                    <label for="exampleInputEmail1">comentario</label>
+                                                    <input type="text" value="{{comentario}}" class="form-control" name="comentario" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="comentario">
+                                                </div> --}}
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                            <button type="submit" class="btn btn-primary">modificar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    
+
+
+        <div class="col-12 col-md-4">
+            <di class="row-4">
+                <form method="POST" action="/usuario/agregar">
+                    <h1>registro usuario</h1>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="nombre">
+                    </div>
+
+                    <input type="hidden" class="form-control" name="id_usuario" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">email</label>
+                        <input type="text" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">apellido</label>
+                        <input type="text" class="form-control" name="apellido" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="apellido">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">numero cedula</label>
+                        <input type="text" class="form-control" name="numero_cedula" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="numero_cedula">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">direccion</label>
+                        <input type="text" class="form-control" name="direccion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="direccion">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">whatsapp</label>
+                        <input type="text" class="form-control" name="whatsapp" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="whatsapp">
+                    </div>
+
+                     {{!-- <div class="form-group">
+                        <label for="exampleInputEmail1">comentario</label>
+                        <input type="text" class="form-control" name="comentario" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="comentario">
+                    </div> --}}
+                    
+                    
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+         </di>
+    </div>
+    
+    
+        
+</div>

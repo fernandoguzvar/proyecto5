@@ -1,0 +1,124 @@
+ <div class="container">
+     <div class="row">
+         <div class="col-6 col-md-6">
+     <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                {{!-- <th scope="col">id_corporativo</th> --}}
+                <th scope="col">mision</th>
+                 <th scope="col">vision</th>
+                <th scope="col">eliminar & modificar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {{#each todoCorporativo}}
+                <tr>
+                {{!-- <th scope="row">{{id_corporativo}}</th> --}}
+                    <td>{{mision}}</td>
+                    <td>{{vision}}</td>
+                    {{!-- <td><div class="pic"><img src="{{comentario}}" width="100px" height="50px" alt=""></div></td> --}}
+                          <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{id_corporativo}}">
+                        eliminar
+                        </button>
+                          <div class="modal fade" id="exampleModal{{id_corporativo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="color:red" class="modal-title" id="exampleModalLabel">eliminar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div style="color:blue;" class="modal-body">
+                                    desea eliminar la mision y vision?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                    <a href="/corporativo/eliminar/{{id_corporativo}}" class="btn btn-danger">eliminar</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarcorporativo{{id_corporativo}}">
+                        modificar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modificarcorporativo{{id_corporativo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="/corporativo/modificar/{{id_corporativo}}">
+                                        <div class="modal-header">
+                                            <h5 style="color:red" class="modal-title" id="exampleModalLabel">modificar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div style="color:blue;" class="modal-body">
+                                        
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">mision</label>
+                                                    <input type="text" value="{{mision}}" class="form-control" name="mision" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="mision">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">vision</label>
+                                                    <input type="text" value="{{vision}}" class="form-control" name="vision" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="vision">
+                                                </div>
+
+                                                {{!--  <div class="form-group">
+                                                    <label for="exampleInputEmail1">comentario</label>
+                                                    <input type="text" value="{{comentario}}" class="form-control" name="comentario" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="comentario">
+                                                </div> --}}
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                            <button type="submit" class="btn btn-primary">modificar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    
+
+
+    <div class="col-12 col-md-4">
+            <di class="row-4">
+                <form method="POST" action="/corporativo/agregar">
+                    <h1>mision y vision</h1>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">mision</label>
+                        <input type="text" class="form-control" name="mision" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="mision">
+                    </div>
+
+                    <input type="hidden" class="form-control" name="id_corporativo" id="exampleInputEmail1" aria-describedby="visionHelp">
+            
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">vision</label>
+                        <input type="text" class="form-control" name="vision" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="vision">
+                    </div>
+
+                     {{!-- <div class="form-group">
+                        <label for="exampleInputEmail1">comentario</label>
+                        <input type="text" class="form-control" name="comentario" id="exampleInputEmail1" aria-describedby="visionHelp" placeholder="comentario">
+                    </div> --}}
+                    
+                    
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+            </form>
+         </di>
+    </div>
+    
+    
+        
+</div>

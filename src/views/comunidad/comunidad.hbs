@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>encuesta</title>
+</head>
+<body>
+    {{#each todoComunidad}}
+        <div class="card" style="width: 18rem;">
+            <h2>{{encuesta}}</h2>
+            <div class="card-body">
+                <h5 class="card-title">{{link}}</h5>
+            </div>
+            <tr>
+                <td>
+                     <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{id_encuesta}}">
+                        eliminar
+                        </button>
+                          <div class="modal fade" id="exampleModal{{id_encuesta}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="color:red" class="modal-title" id="exampleModalLabel">eliminar</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div style="color:blue;" class="modal-body">
+                                    desea eliminar  {{encuesta}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                    <a href="/encuesta/eliminar/{{id_encuesta}}" class="btn btn-danger">eliminar</a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarencuesta{{id_encuesta}}">
+                        modificar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="modificarencuesta{{id_encuesta}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="POST" action="/encuesta/modificar/{{id_encuesta}}">
+                                        <div class="modal-header">
+                                            <h5 style="color:red" class="modal-title" id="exampleModalLabel">modificar</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div style="color:blue;" class="modal-body">
+                                        
+
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">encuesta</label>
+                                                    <input type="text" value="{{encuesta}}" class="form-control" name="encuesta" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="encuesta">
+                                                </div>
+
+                                               {{!--  <div class="form-group">
+                                                    <label for="exampleInputEmail1">descripcion</label>
+                                                    <input type="text" value="{{descripcion}}" class="form-control" name="descripcion" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="descripcion">
+                                                </div> --}}
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+                                            <button type="submit" class="btn btn-primary">modificar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </td>
+            </tr>
+        </div>
+    {{/each}}
+</body>
+</html>
